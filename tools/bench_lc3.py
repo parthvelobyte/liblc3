@@ -93,6 +93,10 @@ def main():
                   file=sys.stderr)
             sys.exit(1)
 
+    # Checksum lines first (the adapter compares them across arms and against
+    # tools/lc3_golden.txt), then the metric line.
+    for name, digest in sorted(sums.items()):
+        print(f"{name} {digest}")
     times.sort()
     print(f"elapsed_ns={times[len(times) // 2]}")
 
